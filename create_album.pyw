@@ -3,7 +3,8 @@ from datetime import datetime
 
 def insert_creater(window):
     """
-    Insert an album registration menu in the window.
+    Insert an album registration menu in the window
+    and return the main frame widget.
     """
 
     #Global variables:
@@ -64,7 +65,8 @@ def insert_creater(window):
     x = (window_width - frame.winfo_reqwidth())//2
     y = (window_height - frame.winfo_reqheight())//2
     frame.pack(padx=x, pady=y)
-    window.mainloop()
+
+    return frame
 
 def set_album():
     """
@@ -76,10 +78,12 @@ def set_album():
     artist = entryArtist.get()
     launch = check_launch.get()
 
-    album_info = "{} {} {} {}\n".format(name, year, artist, launch)
+    name = " " if (name == "") else name
+    artist = " " if (artist == "") else artist
+
+    album_info = "{}|{}|{}|{}\n".format(name, year, artist, launch)
     album_list = open("album_list.txt", 'a', encoding="utf-8")
     album_list.write(album_info)
-    print(album_info)
 
 if __name__ == "__main__":
     #Create the Window:
